@@ -1,4 +1,6 @@
+import 'package:api/Provider/WeatherProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Weatherscreen extends StatefulWidget {
   const Weatherscreen({super.key});
@@ -8,9 +10,8 @@ class Weatherscreen extends StatefulWidget {
 }
 
 class _WeatherscreenState extends State<Weatherscreen> {
-
   TextEditingController cityController = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,29 +31,33 @@ class _WeatherscreenState extends State<Weatherscreen> {
                 hintText: "Enter City Name",
                 border: OutlineInputBorder(
                   borderSide: BorderSide(),
-                  borderRadius: BorderRadius.circular(15)
-                )
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(height: 15),
 
-            SizedBox(height: 15,),
+            
+
+            SizedBox(height: 15),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 100,vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                 backgroundColor: Colors.blue,
                 shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(26)
-                )
+                  borderRadius: BorderRadius.circular(26),
+                ),
               ),
-              onPressed: (){
-                if(cityController.text.trim().isNotEmpty){
-                  
+              onPressed: () {
+                if (cityController.text.isNotEmpty) {
+                  context.read<WeatherProvider>().getWeather(cityController.text.trim());
                 }
-            }, child: Text("Enter",style: TextStyle(
-              color: Colors.white,
-              fontSize: 22
-            ),))
+              },
+              child: Text(
+                "Enter",
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              ),
+            ),
           ],
         ),
       ),
