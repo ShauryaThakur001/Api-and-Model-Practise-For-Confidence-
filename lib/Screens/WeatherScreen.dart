@@ -1,6 +1,6 @@
-import 'package:api/Provider/WeatherProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../Provider/WeatherProvider.dart';
 
 class Weatherscreen extends StatefulWidget {
   const Weatherscreen({super.key});
@@ -10,13 +10,17 @@ class Weatherscreen extends StatefulWidget {
 }
 
 class _WeatherscreenState extends State<Weatherscreen> {
-  TextEditingController cityController = TextEditingController();
+
+  final TextEditingController cityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    final provider = context.watch<WeatherProvider>();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weather Screen"),
+        title: const Text("Weather Screen"),
         centerTitle: true,
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
@@ -25,37 +29,93 @@ class _WeatherscreenState extends State<Weatherscreen> {
         padding: const EdgeInsets.all(28.0),
         child: Column(
           children: [
+
+            /// TextField
             TextField(
               controller: cityController,
               decoration: InputDecoration(
                 hintText: "Enter City Name",
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(),
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
             ),
-            SizedBox(height: 15),
 
-            
+            const SizedBox(height: 20),
 
-            SizedBox(height: 15),
+            /// Loading
+            if (provider.isLoading)
+              const CircularProgressIndicator(),
+
+            /// Error
+            if (provider.errorMessage != null)
+              Text(
+                provider.errorMessage!,
+                style: const TextStyle(color: Colors.red),
+              ),
+
+            /// Weather Data
+            if (provider.weather != null) ...[
+
+              const SizedBox(height: 20),
+
+              Text(
+                provider.weather!.cityName,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              Text("${provider.weather!.temperature} °C"),
+
+              const SizedBox(height: 10),
+
+              Text("Humidity: ${provider.weather!.humidity}%"),
+
+              const SizedBox(height: 10),
+
+              Text("Wind: ${provider.weather!.windSpeed} m/s"),
+
+              const SizedBox(height: 10),
+
+              Text(provider.weather!.description),
+
+              const SizedBox(height: 15),
+
+              /// Weather Icon (Simplified Model)
+              Image.network(
+                "https://openweathermap.org/img/wn/${provider.weather!.icon}@2x.png",
+                width: 100,
+                height: 100,
+              ),
+            ],
+
+            const SizedBox(height: 25),
+
+            /// Search Button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                backgroundColor: Colors.blue,
-                shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(26),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 100,
+                  vertical: 15,
                 ),
+                backgroundColor: Colors.blue,
               ),
               onPressed: () {
                 if (cityController.text.isNotEmpty) {
-                  context.read<WeatherProvider>().getWeather(cityController.text.trim());
+                  context.read<WeatherProvider>()
+                      .getWeather(cityController.text.trim());
                 }
               },
-              child: Text(
-                "Enter",
-                style: TextStyle(color: Colors.white, fontSize: 22),
+              child: const Text(
+                "Search",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
             ),
           ],
