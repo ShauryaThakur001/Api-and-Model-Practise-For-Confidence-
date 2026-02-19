@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../Model/WeatherModel.dart';
-import '../Services/ApiService.dart';
+import '../Services/WeatherApiService.dart';
 
 class WeatherProvider extends ChangeNotifier {
 
-  final ApiService _service = ApiService();
+  final WeatherApiService _service = WeatherApiService();
 
   WeatherModel? _weather;
   bool _isLoading = false;

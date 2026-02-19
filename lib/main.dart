@@ -1,3 +1,4 @@
+import 'package:api/Provider/NewsProvider.dart';
 import 'package:api/Provider/WeatherProvider.dart';
 import 'package:api/Screens/WeatherScreen.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => WeatherProvider()),
+    ChangeNotifierProvider(create: (context) => NewsProvider()),
   ],
   child: const MyApp(),));
 }

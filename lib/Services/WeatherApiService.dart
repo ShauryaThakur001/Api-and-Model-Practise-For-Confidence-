@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../Model/WeatherModel.dart';
 
-class ApiService {
+class WeatherApiService {
 
   final String apiKey = "f011cca49027075b4b1357f7431ff529";
 
