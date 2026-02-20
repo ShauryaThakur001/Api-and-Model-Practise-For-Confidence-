@@ -62,7 +62,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                 newsService.newsModel[index];
 
                             return NewsContainer(
-                              url: article.urlToImage,   // ✅ FIXED
+                              url: article.urlToImage,   
                               title: article.title,
                               description: article.description,
                             );

@@ -15,6 +15,7 @@ class NewsApiService {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
+
       final jsonData = jsonDecode(response.body);
 
       List articles = jsonData['articles'];
@@ -22,6 +23,7 @@ class NewsApiService {
       return articles
           .map((e) => NewsModel.fromJson(e))
           .toList();
+          
     } else {
       throw Exception("Failed to load news");
     }
