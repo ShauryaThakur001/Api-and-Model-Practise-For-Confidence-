@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Weather Api Demo',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
       home: CurrencyScreen(),
     );
