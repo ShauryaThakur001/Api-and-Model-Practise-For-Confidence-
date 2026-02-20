@@ -12,11 +12,18 @@ class NewsModel {
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
+
+    final image = json['urlToImage'];
+
     return NewsModel(
-      title: json['title'] ?? '',
-      description: json['description'] ?? '',
-      url: json['url'] ?? '',
-      urlToImage: json['urlToImage'] ?? '',
+      title: (json['title'] ?? '').toString(),
+      description: (json['description'] ?? '').toString(),
+      url: (json['url'] ?? '').toString(),
+
+      /// Safe image handling
+      urlToImage: image != null && image.toString().isNotEmpty
+          ? image.toString()
+          : '',
     );
   }
 }

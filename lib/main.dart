@@ -1,6 +1,6 @@
 import 'package:api/Provider/NewsProvider.dart';
 import 'package:api/Provider/WeatherProvider.dart';
-import 'package:api/Screens/WeatherScreen.dart';
+import 'package:api/Screens/NewsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Weatherscreen(),
+      home: NewsScreen(),
     );
   }
 }
