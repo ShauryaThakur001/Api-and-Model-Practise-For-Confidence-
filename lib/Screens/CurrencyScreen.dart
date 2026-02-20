@@ -10,6 +10,21 @@ class CurrencyScreen extends StatefulWidget {
 class _CurrencyScreenState extends State<CurrencyScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Currency Convertion"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(28.0),
+        child: Column(
+          children: [
+            
+          ],
+        ),
+      ),
+    );
   }
 }
