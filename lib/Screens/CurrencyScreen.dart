@@ -29,7 +29,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = context.read<CurrencyProvider>();
       provider.getCurrencies();
-      provider.getCurrencyConversion(); // Load latest rates
+      provider.getCurrencyConversion(); 
     });
   }
 

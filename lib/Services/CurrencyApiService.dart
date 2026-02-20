@@ -14,7 +14,7 @@ class CurrencyApiService {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
+      final data = jsonDecode(response.body);
       return CurrencyModel.fromJson(data);
     } else {
       throw Exception("Failed to load latest rates");
