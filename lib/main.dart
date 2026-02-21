@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'News Api Demo',
+      title: 'Currency Api Demo',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
