@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Weather Api Demo',
+      title: 'News Api Demo',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
